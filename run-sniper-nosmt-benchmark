@@ -2,22 +2,19 @@ echo Run No-SMT benchmark under the Sniper simulator.
 echo 
 echo Example:
 echo --------
-echo ./run-sniper-nosmt-benchmark /test/api/api 8
+echo ./run-sniper-nosmt-benchmark api.sift 8
 
-apppath=$1
-apppath_arr=(${apppath//\// })
-apppath_len=${#apppath_arr[@]}
-appbasename=${apppath_arr[apppath_len-1]}
+binary=$1
 smtwidth=$2
 
-appdir=${appbasename}X${smtwidth}_nosmt
+appdir=${binary%.sift}X${smtwidth}-nosmt
 echo $appdir 
 
-applist=`for ((j = 0 ; j < $smtwidth ; j++ )); do echo "${appbasename}.sift,"; done`
+applist=`for ((j = 0 ; j < $smtwidth ; j++ )); do echo "${binary},"; done`
 applist="$(echo -e "${applist}" | tr -d '[:space:]')"
 applist=${applist::-1}
 echo $applist
 
 echo ./run-sniper -d $appdir -n $smtwidth --traces=$applist
-./run-sniper -d $appdir -n $smtwidth --traces=$applist
+     ./run-sniper -d $appdir -n $smtwidth --traces=$applist
 

@@ -15,6 +15,15 @@ applist="$(echo -e "${applist}" | tr -d '[:space:]')"
 applist=${applist::-1}
 echo $applist
 
-echo ./run-sniper -d $appdir -g --perf_model/core/logical_cpus=$smtwidth -n $smtwidth -g --perf_model/l1_icache/perfect=true -g --perf_model/l1_dcache/perfect=true -g --perf_model/l2_cache/perfect=true -g --perf_model/l3_cache/perfect=true --traces=$applist
-     ./run-sniper -d $appdir -g --perf_model/core/logical_cpus=$smtwidth -n $smtwidth -g --perf_model/l1_icache/perfect=true -g --perf_model/l1_dcache/perfect=true -g --perf_model/l2_cache/perfect=true -g --perf_model/l3_cache/perfect=true --traces=$applist
+echo ./run-sniper -d $appdir -g --perf_model/core/logical_cpus=$smtwidth -n $smtwidth \
+-g --perf_model/l1_icache/perfect=true \
+-g --perf_model/l1_dcache/perfect=true \
+-g --perf_model/l2_cache/perfect=true \
+-g --perf_model/l3_cache/perfect=true --traces=$applist
+     ./run-sniper -d $appdir -g --perf_model/core/logical_cpus=$smtwidth -n $smtwidth \
+-g --perf_model/l1_icache/perfect=true \
+-g --perf_model/l1_dcache/perfect=true \
+-g --perf_model/l2_cache/perfect=true \
+-g --perf_model/l3_cache/perfect=true --traces=$applist
+
 
