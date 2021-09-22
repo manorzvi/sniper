@@ -1,0 +1,20 @@
+echo Run SMT benchmark under the Sniper simulator.
+echo 
+echo Example:
+echo --------
+echo ./run-sniper-smt-benchmark api.sift 8
+
+binary=$1
+smtwidth=$2
+
+appdir=${binary%.sift}X${smtwidth}
+echo $appdir 
+
+applist=`for ((j = 0 ; j < $smtwidth ; j++ )); do echo "${binary},"; done`
+applist="$(echo -e "${applist}" | tr -d '[:space:]')"
+applist=${applist::-1}
+echo $applist
+
+echo ./run-sniper -d $appdir -g --perf_model/core/logical_cpus=$smtwidth -n $smtwidth --traces=$applist
+./run-sniper -d $appdir -g --perf_model/core/logical_cpus=$smtwidth -n $smtwidth --traces=$applist
+
